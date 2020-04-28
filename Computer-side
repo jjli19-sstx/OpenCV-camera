@@ -7,7 +7,7 @@ import time
 import socket
 import keyboard
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')#}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 eye_cascade = cv2.CascadeClassifier('haarcascade_eye.xml')
 cap=cv2.VideoCapture(0)
 
@@ -15,7 +15,7 @@ ipaddress=raw_input('Please type in the camera ipaddress:')
 strPort=input('Please enter the available port')
 Port=int(strPort)
 s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect((ipaddress, Port))                     #                                                    I
+s.connect((ipaddress, Port))              
 
 webbrowser.open("http://"+str(ipaddress)+":8000")
 
@@ -77,8 +77,7 @@ def take(x,y,w,h):#The factory camera for the Raspberry Pi comes with a tiny len
 
 with mss.mss() as sct:
     # Part of the screen to capture
-    monitor = {'top': 150, 'left': 450, 'width': 640, 'height': 480}#---------------------------------+--------------------------------------------}
-
+    monitor = {'top': 150, 'left': 450, 'width': 640, 'height': 480}
     while 'Screen capturing':
         
         try:  #used try so that if user pressed other than the given key error will not be shown
@@ -95,7 +94,7 @@ with mss.mss() as sct:
 
         
         last_time = time.time()
-        # Get raw pixels from the screen, save it to a Numpy array                                    I
+        # Get raw pixels from the screen, save it to a Numpy array                              
         img = np.array(sct.grab(monitor))
 
         # Display the picture
@@ -108,8 +107,8 @@ with mss.mss() as sct:
 
         for(x,y,w,h) in faces:
 
-                cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0), 0)#------------------------------------+
-                roi_gray = gray[y:y+h, x:x+w]           #}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}
+                cv2.rectangle(img, (x,y), (x+w, y+h), (255,0,0), 0)
+                roi_gray = gray[y:y+h, x:x+w]         
                 roi_color =img[y:y+h, x:x+w]
                 eyes = eye_cascade.detectMultiScale(roi_gray)
                 
@@ -145,5 +144,11 @@ with mss.mss() as sct:
 cap.release()
 cv2.destroyAllWindows()
     
+
+
+
+
+
+
 
 
